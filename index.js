@@ -1,14 +1,13 @@
-function shoppingList() {
-  
-  
-    $('#js-shopping-list-form').submit(function(event){
-      event.preventDefault();
-      
-      const listItem = $('#shopping-list-entry').val();
-      
-      
-     if (listItem !== "") {
-        $('.shopping-list').append(`<li>
+//add new item.
+function shoppingListAddItem() {
+  $("#js-shopping-list-form").submit(function (event) {
+    event.preventDefault()
+
+    //holds the value of item entered in listItem
+    const listItem = $("#shopping-list-entry").val()
+    //if listItem does not equal nothing adds it within the html with all the formating.
+    if (listItem !== "") {
+      $(".shopping-list").append(`<li>
           <span class="shopping-item">${listItem}</span>
           <div class="shopping-item-controls">
             <button class="shopping-item-toggle">
@@ -19,24 +18,30 @@ function shoppingList() {
             </button>
           </div>
         </li>
-        `);
-        $('.js-shopping-list-entry').val("");
+        `)
     }
-  });
-  
-  
-  $('.shopping-list').on('click', '.shopping-item-toggle', function(event) {
-    $(this).closest('.shopping-item-controls').siblings('.shopping-item').toggleClass('shopping-item__checked');
-  });
-  
-  
-  
-  $('.shopping-list').on('click', '.shopping-item-delete', function(event) {
-    $(this).closest('li').remove();
-  });
-  }
-   
-  
-  
-  
-  $(shoppingList);
+    //resets the form input
+    $("input[name=shopping-list-entry").val("")
+  })
+}
+
+//check item and markout
+function markItem() {
+  $(".shopping-list").on("click", ".shopping-item-toggle", function (event) {
+    $(this)
+      .closest(".shopping-item-controls")
+      .siblings(".shopping-item")
+      .toggleClass("shopping-item__checked")
+  })
+}
+
+//remove item
+function removeItem() {
+  $(".shopping-list").on("click", ".shopping-item-delete", function (event) {
+    $(this).closest("li").remove()
+  })
+}
+
+$(shoppingListAddItem)
+$(markItem)
+$(removeItem)
